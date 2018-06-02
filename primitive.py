@@ -2,11 +2,12 @@ from OpenGL.GL import glBegin, glColor3f, glEnd, glEndList, glLineWidth, glNewLi
                       GL_COMPILE, GL_LINES, GL_QUADS, GL_TRIANGLES
 from OpenGL.GLU import gluDeleteQuadric, gluNewQuadric, gluSphere
 import numpy as np
+from LoadObj import *
 G_OBJ_PLANE = 1
 G_OBJ_SPHERE = 2
 G_OBJ_CUBE = 3
 G_OBJ_MESH = 4
-
+G_OBJ_MAN = 5
 
 def make_plane():
     glNewList(G_OBJ_PLANE, GL_COMPILE)
@@ -115,10 +116,23 @@ def make_mesh():
             glVertex3f(vertices[face[i][j]-1][0],vertices[face[i][j]-1][1],vertices[face[i][j]-1][2])
         glEnd()
     glEndList()
-
+def make_man():
+    glNewList(G_OBJ_MAN, GL_COMPILE)
+    obj=OBJ('./OBJ/smpl_np.obj')
+    vertices=obj.vertices
+    face=obj.faces
+    for i in range(len(face)):
+        glColor3f(216 / 255, 186 / 255, 160 / 255)
+        glBegin(GL_TRIANGLES)
+        glNormal3f(face[i][1][0],face[i][1][1],face[i][1][2])
+        for j in range(3):
+            glVertex3f(vertices[face[i][0][j]-1][0],vertices[face[i][0][j]-1][1],vertices[face[i][0][j]-1][2])
+        glEnd()
+    glEndList()
 
 def init_primitives():
     make_plane()
     make_sphere()
     make_cube()
     make_mesh()
+    make_man()

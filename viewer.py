@@ -19,7 +19,7 @@ from OpenGL.GLU import gluDeleteQuadric, gluNewQuadric, gluSphere
 import color
 from scene import Scene
 from primitive import init_primitives, G_OBJ_PLANE
-from node import Sphere, Cube, SnowFigure, ThreePyramid
+from node import Sphere, Cube, SnowFigure, ThreePyramid, Man
 from interaction import Interaction
 
 
@@ -79,6 +79,7 @@ class Viewer(object):
         self.create_sample_scene()
 
     def create_sample_scene(self):
+        '''
         cube_node = Cube()
         cube_node.translate(2, 2, 2)
         cube_node.color_index = 1
@@ -94,10 +95,16 @@ class Viewer(object):
         self.scene.add_node(hierarchical_node)
 
         three_pyramid = ThreePyramid()
-        three_pyramid.translate(0,0,0)
+        three_pyramid.translate(0,10,0)
         three_pyramid.scale(4)
         three_pyramid.color_index=5
         self.scene.add_node(three_pyramid)
+        '''
+        man = Man()
+        man.translate(0,0,0)
+        man.scale(8)
+        man.color_index=1
+        self.scene.add_node(man)
 
     def init_interaction(self):
         self.interaction = Interaction()

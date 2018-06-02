@@ -3,7 +3,7 @@ from OpenGL.GL import glCallList, glColor3f, glMaterialfv, glMultMatrixf, glPopM
                       GL_EMISSION, GL_FRONT
 import numpy
 
-from primitive import G_OBJ_CUBE, G_OBJ_SPHERE, G_OBJ_MESH
+from primitive import G_OBJ_CUBE, G_OBJ_SPHERE, G_OBJ_MESH, G_OBJ_MAN
 from transformation import scaling, translation
 import color
 
@@ -94,6 +94,11 @@ class ThreePyramid(Primitive):
     def __init__(self):
         super(ThreePyramid,self).__init__()
         self.call_list = G_OBJ_MESH
+
+class Man(Primitive):
+    def __init__(self):
+        super(Man, self).__init__()
+        self.call_list = G_OBJ_MAN
 
 class HierarchicalNode(Node):
     def __init__(self):
